@@ -1,10 +1,20 @@
 <template>
     <v-card>
         <v-card-title>Team Chat</v-card-title>
-        <v-list>
-            <v-list-item :key="line.id" v-for="line in chat">{{ line.author }}: {{ line.message }}</v-list-item>
-        </v-list>
-        <v-form @submit.prevent="send" ref="chat" class="px-3">
+        <v-virtual-scroll
+            :items="chat"
+            height="150"
+            item-height="25"
+            id="chatWindow"
+        >
+            <template v-slot:default="{ item }">
+                <v-list-item :key="item.id" class="word-wrap">
+                    <v-chip small>{{ item.author }}</v-chip>
+                    : {{ item.message }}
+                </v-list-item>
+            </template>
+        </v-virtual-scroll>
+        <v-form @submit.prevent="send" ref="chat" class="px-3 py-0">
             <v-text-field
                 v-model="message"
                 :append-icon="'mdi-send'"
@@ -30,6 +40,7 @@ export default {
                 'id': this.chat.length + 1,
                 'author': data['username'],
                 'message': data['msg']})
+            document.getElementById('chatWindow').scrollBy(0, 9999)
         }
     },
     methods: {
@@ -44,5 +55,4 @@ export default {
 </script>
 
 <style>
-
 </style>

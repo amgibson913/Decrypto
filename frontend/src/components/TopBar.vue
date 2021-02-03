@@ -19,7 +19,6 @@
             <v-icon v-for="n in score.White.Misses" :key="n">mdi-skull-crossbones</v-icon>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn><v-icon>mdi-home</v-icon></v-btn>
     </v-app-bar>
 </template>
 

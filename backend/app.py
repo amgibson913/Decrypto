@@ -15,7 +15,7 @@ players = {}  # Holds players and their corresponding room, for disconnects
 
 @app.route('/')
 def index():
-    return render_template('vue/index.html')
+    return "<p>Something isn't quite right here</p>"
 
 
 @socketio.on('connect')
@@ -26,6 +26,7 @@ def connect():
 @socketio.on('disconnect')
 def disconnect():
     room = players.get(request.sid, None)
+    print(request.sid+' has disconnected')
     if room and room in list(games):
         game = games[room]
         isEmpty = game.removePlayer(request.sid)

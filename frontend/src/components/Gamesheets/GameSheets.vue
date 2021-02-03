@@ -8,14 +8,14 @@
             <v-tab>White {{ (team == 'White') ? "(You)" : "(Them)" }}</v-tab>
             <v-tab>Black {{ (team == 'Black') ? "(You)" : "(Them)" }}</v-tab>
             <v-tab-item v-for="color in ['White', 'Black']" :key="color">
-                <GameSheet :sheet="gamesheets[color]" :color="color" :words="(team==color)?words:''"/>
+                <GameSheet :sheet="gamesheets[color]" :color="color" :words="(team==color)?words:''" class="mx-auto" />
             </v-tab-item>
         </v-tabs>
     </v-card>
 </template>
 
 <script>
-import GameSheet from './GameSheet2.vue'
+import GameSheet from './GameSheet.vue'
 
 export default {
     name: 'GameSheets',

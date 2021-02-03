@@ -13,4 +13,4 @@ ENV FLASK_APP app.py
 RUN chmod +x boot.sh
 
 EXPOSE 5000
-ENTRYPOINT ['sh', './boot.sh']
+ENTRYPOINT ["./boot.sh"]

@@ -1,5 +1,8 @@
 git pull
 
+docker stop frontend
+docker stop backend
+
 docker build -t decryptofrontend:latest ./frontend
 docker build -t decryptobackend:latest ./backend
 

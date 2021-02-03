@@ -12,6 +12,7 @@ develop-eggs/
 dist/
 node_modules/
 downloads/
+eventlet
 
 # Flask stuff:
 instance/

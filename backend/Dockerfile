@@ -1,4 +1,4 @@
-FROM python:3.9.1-alpine
+FROM python:3.9.1-buster
 
 WORKDIR /app
 ENV FLASK_APP app.python

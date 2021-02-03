@@ -1,6 +1,6 @@
 FROM python:3.9.1-buster
 
-RUN adduser --default backend
+RUN adduser backend
 
 WORKDIR /app
 COPY requirements.txt requirements.txt

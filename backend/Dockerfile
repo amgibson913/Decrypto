@@ -1,6 +1,5 @@
 FROM python:3.9.1-buster
 
-RUN adduser backend
 
 WORKDIR /app
 COPY requirements.txt requirements.txt
@@ -12,8 +11,6 @@ RUN venv/bin/pip install gunicorn
 COPY . .
 ENV FLASK_APP app.py
 RUN chmod +x boot.sh
-RUN chown -R backend:backend ./
-USER backend
 
 EXPOSE 5000
 ENTRYPOINT ['./boot.sh']

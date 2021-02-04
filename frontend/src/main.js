@@ -6,7 +6,7 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
-const socket = io('http://localhost:8080')
+const socket = io('http://wyethst.xyz/decrypto')
 
 Vue.use(VueSocketIOExt, socket)
 

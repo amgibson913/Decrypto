@@ -6,7 +6,7 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
-const socket = io('http://wyethst.xyz/decrypto')
+const socket = io('https://wyethst.xyz/decrypto')
 
 Vue.use(VueSocketIOExt, socket)
 

@@ -7,7 +7,7 @@
             <v-btn @click.prevent="create">Create a room</v-btn>
             <v-card-subtitle>Or enter a room code below</v-card-subtitle>
             <v-form class="px-3" @submit.prevent="join" ref="roomInput">
-                <v-text-field ref="input" v-model="roomCode" label="Join a room" :rules="inputRules"></v-text-field>
+                <v-text-field ref="input" v-model="roomCode" label="Join a room" :rules="inputRules" validate-on-blur></v-text-field>
                 <v-btn @click.prevent="join">Join room</v-btn>
             </v-form>
         </v-card-text>

@@ -3,12 +3,12 @@
         <v-card-title>Team Chat</v-card-title>
         <v-virtual-scroll
             :items="chat"
-            height="150"
-            item-height="25"
+            height="170"
+            :item-height="25"
             id="chatWindow"
         >
             <template v-slot:default="{ item }">
-                <v-list-item :key="item.id" class="word-wrap">
+                <v-list-item>
                     <v-chip small>{{ item.author }}</v-chip>
                     : {{ item.message }}
                 </v-list-item>
@@ -19,6 +19,7 @@
                 v-model="message"
                 :append-icon="'mdi-send'"
                 @click:append="send"
+                dense
             ></v-text-field>
         </v-form>
     </v-card>
@@ -40,7 +41,7 @@ export default {
                 'id': this.chat.length + 1,
                 'author': data['username'],
                 'message': data['msg']})
-            document.getElementById('chatWindow').scrollBy(0, 9999)
+            document.getElementById('chatWindow').scrollTo(0, 9999)
         }
     },
     methods: {

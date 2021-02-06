@@ -10,10 +10,10 @@
         <v-card-title>Your code is {{ code }}</v-card-title>
         <v-card-subtitle>Enter clues below</v-card-subtitle>
         <v-form ref="clueInput">
-            <v-text-field v-model="clues[0]" :rules="clueRules" required :label="words[code[0] - 1]"></v-text-field>
-            <v-text-field v-model="clues[1]" :rules="clueRules" required :label="words[code[1] - 1]"></v-text-field>
-            <v-text-field v-model="clues[2]" :rules="clueRules" required :label="words[code[2] - 1]"></v-text-field>
-            <v-btn block @click="submitClues">Submit</v-btn>
+            <v-text-field v-model="clues[0]" :rules="clueRules" :label="words[code[0] - 1]" validate-on-blur></v-text-field>
+            <v-text-field v-model="clues[1]" :rules="clueRules" :label="words[code[1] - 1]" validate-on-blur></v-text-field>
+            <v-text-field v-model="clues[2]" :rules="clueRules" :label="words[code[2] - 1]" validate-on-blur></v-text-field>
+            <v-btn block @click="submitClues" :disabled="cluesValid">{{ !cluesValid ? 'Submit' : 'Enter Clues' }}</v-btn>
         </v-form>
     </v-card>
     <v-card v-else-if="gameRound == 'needGuess'">
@@ -44,12 +44,10 @@ export default {
     data() {
         return {
             guess: [1,1,1],
-            clues: [],
+            clues: ['','',''],
             message: '',
             gameRound: '',
-            clueRules: [
-                v => !!v || 'Clue Required'
-            ]
+            clueRules: []
         }
     },
     methods: {
@@ -59,7 +57,7 @@ export default {
         submitClues() {
             if (this.$refs.clueInput.validate()) {
             this.$socket.client.emit('clues', { 'team': this.team, 'clues': this.clues})
-            this.clues = []
+            this.clues = ['','','']
             }
         },
         submitGuess() {
@@ -79,6 +77,7 @@ export default {
     },
     computed: {
         codeValid: function() {return (this.guess[0] == this.guess[1] || this.guess[0] == this.guess[2] || this.guess[1] == this.guess[2])},
+        cluesValid: function() {return (this.clues[0] == '' || this.clues[1] == '' || this.clues[2] == '')},
         otherTeam: function() { return (this.team == 'White') ? 'Black' : 'White' },
         codeMaster: function() { return (this.code.length != 0) ? true : false },
         wait: function() {
@@ -143,5 +142,8 @@ export default {
 <style scoped>
 /deep/ .centered-input input {
   text-align: center
+}
+.v-card__text, .v-card__title {
+    word-break: normal;
 }
 </style>

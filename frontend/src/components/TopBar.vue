@@ -2,7 +2,7 @@
     <v-app-bar app color="grey lighten-2">
         <v-tooltip v-model="copied" bottom>
             <template v-slot:activator="on">
-                <v-btn @click="copy('localhost:8080?room='+room)" v-on="on">
+                <v-btn @click="copy" v-on="on">
                     <v-toolbar-title>Room: {{ room }}</v-toolbar-title>
                 </v-btn>
             </template>
@@ -32,8 +32,8 @@ export default {
         }
     },
     methods: {
-        async copy(s) {
-            await navigator.clipboard.writeText(s)
+        async copy() {
+            await navigator.clipboard.writeText(window.location.href + '?room=' + this.room)
             this.copied = true
             await new Promise(r => setTimeout(r, 2000))
             this.copied = false

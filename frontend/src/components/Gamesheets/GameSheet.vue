@@ -2,6 +2,7 @@
 <v-card :color="(color == 'White') ? 'grey lighten-3' : 'grey darken-3'" width="371px">
     <v-card-subtitle
         :class="(color == 'White') ? 'black--text' : 'white--text'"
+        v-if="$vuetify.breakpoint.mdAndUp"
     >{{ color }} {{ (team == color) ? "(You)" : "(Them)" }}</v-card-subtitle>
     <v-row no-gutters align="center">
         <v-col cols="6" v-for="round in 8" :key="round"><RoundCard :round="sheet[round-1]"/></v-col>

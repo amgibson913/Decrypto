@@ -7,7 +7,7 @@
             <v-col>W</v-col>
             <v-col>A</v-col>
         </v-row>
-        <v-row v-for="i in 3" :key="i" no-gutters>
+        <v-row v-for="i in 3" :key="i" no-gutters class="my-0">
             <v-spacer></v-spacer>
             <v-col cols=8>{{ round.Clues[i-1] }}</v-col>
             <v-col>{{ round.Black[i-1] }}</v-col>

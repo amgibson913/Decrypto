@@ -34,11 +34,24 @@ export default {
     },
     computed: {
         result: function() {
+            if (this.score.Black.Misses == 2 && this.score.White.Misses < 2) {
+                if (this.score.Black.Hits == 2) {return this.tiebreaker}
+                else {return "White Team Wins!"}
+            }
+            else if (this.score.White.Misses == 2 && this.score.Black.Misses < 2) {
+                if (this.score.White.Hits == 2) {return this.tiebreaker}
+                else {return "Black Team Wins!"}
+            }
+            else if (this.score.Black.Hits == 2 && this.score.White.Hits < 2) {return "Black Team Wins!"}
+            else if (this.score.White.Hits == 2) {return "White Team Wins!"}
+            else {return "Something Went Wrong"}
+        },
+        tiebreaker: function() {
             var blackScore = this.score.Black.hits - this.score.Black.misses
             var whiteScore = this.score.White.hits - this.score.White.misses
-            if (blackScore == whiteScore) {return "It's a draw!"}
-            else if (blackScore > whiteScore) {return 'Black team wins!'}
-            else {return 'White team wins!'}
+            if (blackScore == whiteScore) {return "It's A Draw!"}
+            else if (blackScore > whiteScore) {return 'Black Team Wins!'}
+            else {return 'White Team Wins!'}
         }
     }
 

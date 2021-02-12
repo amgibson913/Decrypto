@@ -19,11 +19,11 @@
     <v-card v-else-if="gameRound == 'needGuess'">
         <v-card-title class="justify-center pa-1">Guess the code!</v-card-title>
         <v-form ref="guessInput">
-            <v-row>
+            <v-row no-gutters>
                 <v-col cols=4 v-for="i in [0,1,2]" :key="i">
                     <v-text-field
                         v-model="guess[i]"
-                        class="px-5 centered-input"
+                        class="px-4 centered-input"
                         readonly
                         prepend-inner-icon="mdi-minus"
                         append-icon="mdi-plus"

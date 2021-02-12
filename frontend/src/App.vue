@@ -5,14 +5,22 @@
         <v-dialog v-model="gameOver" max-width="600px" :fullscreen="$vuetify.breakpoint.smAndDown"><GameOver :teams="gameState['teams']" :score="gameState['score']" /></v-dialog>
         <TopBar :room="room" :score="gameState.score" app/>
         <v-main>
-            <v-container>
+            <v-container fluid>
                 <v-row>
-                    <v-col cols=12 lg=8 order-lg=2><GameSheets :gamesheets="gamesheets" :team="team" :words="words" /></v-col>
-                    <v-col cols=12 order-lg=4><Words :team="team" :words="words" /></v-col>
-                    <v-col cols=6 lg=2 order-lg=1><TeamList :pteam="team" team="White" :players="gameState.teams.White" :hasCodeMaster="gameState.hasCodeMaster.White" /></v-col>
-                    <v-col cols=6 lg=2 order-lg=3><TeamList :pteam="team" team="Black" :players="gameState.teams.Black" :hasCodeMaster="gameState.hasCodeMaster.Black" /></v-col>
-                    <v-col cols=12 md=6 order=5><TeamChat :team="team" :gameState="gameState" :code="code"/></v-col>
-                    <v-col cols=12 md=6 order=6><InputArea :gameState="gameState" :team="team" :code="code" :words="words" /></v-col>
+                    <v-col cols=12 lg=7 order-lg=2><GameSheets :gamesheets="gamesheets" :team="team" :words="words" /></v-col>
+                    <v-col cols=12 md=6 lg=3 order-lg=1>
+                        <v-row>
+                            <v-col cols=12><InputArea :gameState="gameState" :team="team" :code="code" :words="words" /></v-col>
+                            <v-col cols=12><TeamChat :team="team" :gameState="gameState" :code="code"/></v-col>
+                        </v-row>
+                    </v-col>
+                    <v-col cols=12 md=6 lg=2 order-lg=3>
+                        <v-row>
+                            <v-col cols=12><TeamList :pteam="team" team="White" :players="gameState.teams.White" :hasCodeMaster="gameState.hasCodeMaster.White" /></v-col>
+                            <v-col cols=12><TeamList :pteam="team" team="Black" :players="gameState.teams.Black" :hasCodeMaster="gameState.hasCodeMaster.Black" /></v-col>
+                        </v-row>
+                    </v-col>
+                    <v-col cols=12 order=4><Words :team="team" :words="words" /></v-col>
                 </v-row>
             </v-container>
         </v-main>

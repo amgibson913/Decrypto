@@ -1,19 +1,9 @@
 <template>
-    <v-card>
+    <v-card class="d-flex flex-column fill-height" max-height="340px">
         <v-card-title>Team Chat</v-card-title>
-        <v-virtual-scroll
-            :items="chat"
-            height="170"
-            :item-height="25"
-            id="chatWindow"
-        >
-            <template v-slot:default="{ item }">
-                <v-list-item>
-                    <v-chip small>{{ item.author }}</v-chip>
-                    : {{ item.message }}
-                </v-list-item>
-            </template>
-        </v-virtual-scroll>
+        <v-card-text class="flex-grow-1 overflow-y-auto" id="chatWindow">
+            <div v-for="(msg, i) in chat" :key="i">{{ msg.author }}: {{ msg.message }}</div>
+        </v-card-text>
         <v-form @submit.prevent="send" ref="chat" class="px-3 py-0">
             <v-text-field
                 v-model="message"
@@ -41,7 +31,7 @@ export default {
                 'id': this.chat.length + 1,
                 'author': data['username'],
                 'message': data['msg']})
-            document.getElementById('chatWindow').scrollTo(0, 9999)
+            document.getElementById("chatWindow").scrollTo(0, 9999)
         }
     },
     methods: {
